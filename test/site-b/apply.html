@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>蓝海人才 · 网申信息</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="top">
+    <h1>蓝海人才 · 填写网申信息</h1>
+    <p>第二步：完整填写个人信息（表格布局 + 原生下拉）</p>
+    <div class="nav">
+      <a href="index.html">首页</a>
+      <a href="register.html">注册</a>
+      <a href="apply.html">网申</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="panel">
+      <h2>应聘登记表 <span class="tag" id="currentUser">未登录</span></h2>
+      <div class="notice">按 <b>Ctrl + /</b> 导入 <b>resume.docx / resume.txt</b>，点击「开始智能填写」，扩展会按字段标签自动匹配简历内容。</div>
+
+      <form id="applyForm" autocomplete="off">
+        <fieldset>
+          <legend>基本信息</legend>
+          <table class="table-form">
+            <tr><th>姓名</th><td><input type="text" name="name" required /></td></tr>
+            <tr>
+              <th>性别</th>
+              <td class="radio-group">
+                <label><input type="radio" name="sex" value="男" /> 男</label>
+                <label><input type="radio" name="sex" value="女" /> 女</label>
+              </td>
+            </tr>
+            <tr><th>出生日期</th><td><input type="date" name="birth" /></td></tr>
+            <tr>
+              <th>身份证号</th>
+              <td>
+                <input type="text" name="idcard" pattern="\d{17}[\dXx]" placeholder="18 位身份证号" />
+                <span class="tip">18 位，最后一位可为 X</span>
+              </td>
+            </tr>
+            <tr><th>手机号</th><td><input type="tel" name="phone" required /></td></tr>
+            <tr><th>邮箱</th><td><input type="email" name="email" required /></td></tr>
+            <tr>
+              <th>政治面貌</th>
+              <td>
+                <select name="political">
+                  <option value="">请选择</option>
+                  <option value="群众">群众</option>
+                  <option value="共青团员">共青团员</option>
+                  <option value="中共党员">中共党员</option>
+                  <option value="民主党派">民主党派</option>
+                </select>
+              </td>
+            </tr>
+            <tr><th>籍贯</th><td><input type="text" name="hometown" /></td></tr>
+          </table>
+        </fieldset>
+
+        <fieldset>
+          <legend>教育背景</legend>
+          <table class="table-form">
+            <tr><th>毕业院校</th><td><input type="text" name="school" required /></td></tr>
+            <tr><th>专业</th><td><input type="text" name="major" required /></td></tr>
+            <tr>
+              <th>学历</th>
+              <td>
+                <select name="degree">
+                  <option value="">请选择</option>
+                  <option value="大专">大专</option>
+                  <option value="本科">本科</option>
+                  <option value="硕士">硕士</option>
+                  <option value="博士">博士</option>
+                </select>
+              </td>
+            </tr>
+            <tr><th>毕业时间</th><td><input type="month" name="gradMonth" /></td></tr>
+          </table>
+        </fieldset>
+
+        <fieldset>
+          <legend>求职信息</legend>
+          <table class="table-form">
+            <tr>
+              <th>应聘岗位</th>
+              <td>
+                <select name="job">
+                  <option value="">请选择</option>
+                  <option value="软件开发工程师">软件开发工程师</option>
+                  <option value="数据分析师">数据分析师</option>
+                  <option value="产品运营">产品运营</option>
+                  <option value="UI设计师">UI设计师</option>
+                </select>
+              </td>
+            </tr>
+            <tr><th>期望薪资</th><td><input type="number" name="salary" placeholder="税前月薪（元）" /></td></tr>
+            <tr><th>可到岗日期</th><td><input type="date" name="available" /></td></tr>
+            <tr><th>作品集链接</th><td><input type="url" name="portfolio" placeholder="https://" /></td></tr>
+          </table>
+        </fieldset>
+
+        <fieldset>
+          <legend>其他信息</legend>
+          <table class="table-form">
+            <tr>
+              <th>个人简介</th>
+              <td>
+                <textarea name="summary" maxlength="500" required></textarea>
+                <span class="tip">不少于 200 字</span>
+              </td>
+            </tr>
+            <tr>
+              <th>项目经历</th>
+              <td>
+                <textarea name="projects" maxlength="500"></textarea>
+                <span class="tip">不少于 20 字</span>
+              </td>
+            </tr>
+            <tr>
+              <th>是否接受调剂</th>
+              <td class="radio-group">
+                <label><input type="radio" name="adjust" value="是" /> 是</label>
+                <label><input type="radio" name="adjust" value="否" /> 否</label>
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+
+        <div class="actions">
+          <button type="button" class="btn" id="btnSubmit">提交网申</button>
+          <button type="button" class="btn ghost" id="btnReset">重置</button>
+        </div>
+      </form>
+
+      <div class="msg" id="msg"></div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var form = document.getElementById("applyForm");
+    var msg = document.getElementById("msg");
+    var currentEl = document.getElementById("currentUser");
+    var current = null;
+    try { current = JSON.parse(localStorage.getItem("siteB_current") || "null"); } catch (e) { current = null; }
+    if (current && current.email) currentEl.textContent = "账号：" + current.email;
+
+    function setMsg(text, kind) {
+      msg.textContent = text;
+      msg.className = "msg " + (kind || "");
+    }
+    function val(name) {
+      var el = form.querySelector('[name="' + name + '"]');
+      return el ? (el.value || "").trim() : "";
+    }
+    function radioVal(name) {
+      var el = form.querySelector('[name="' + name + '"]:checked');
+      return el ? el.value : "";
+    }
+
+    document.getElementById("btnReset").addEventListener("click", function () {
+      form.reset();
+      setMsg("");
+    });
+
+    document.getElementById("btnSubmit").addEventListener("click", function () {
+      if (!current || !current.email) return setMsg("请先在注册页创建账号", "err");
+      if (!/^[\u4e00-\u9fa5]{2,10}$/.test(val("name"))) return setMsg("请填写 2-10 位中文姓名", "err");
+      if (!radioVal("sex")) return setMsg("请选择性别", "err");
+      if (!/^\d{17}[\dXx]$/.test(val("idcard"))) return setMsg("身份证号格式不正确", "err");
+      if (!/^1\d{10}$/.test(val("phone"))) return setMsg("手机号格式不正确", "err");
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val("email"))) return setMsg("邮箱格式不正确", "err");
+      if (!val("political")) return setMsg("请选择政治面貌", "err");
+      if (!val("school")) return setMsg("请填写毕业院校", "err");
+      if (!val("major")) return setMsg("请填写专业", "err");
+      if (!val("degree")) return setMsg("请选择学历", "err");
+      if (!val("gradMonth")) return setMsg("请选择毕业时间", "err");
+      if (!val("job")) return setMsg("请选择应聘岗位", "err");
+      if (!(Number(val("salary")) > 0)) return setMsg("请填写期望薪资", "err");
+      if (!val("available")) return setMsg("请选择可到岗日期", "err");
+      if (!/^https?:\/\//.test(val("portfolio"))) return setMsg("请填写以 http(s):// 开头的作品集链接", "err");
+      if (val("summary").length < 200) return setMsg("个人简介不少于 200 字", "err");
+      if (val("projects").length < 20) return setMsg("项目经历不少于 20 字", "err");
+      if (!radioVal("adjust")) return setMsg("请选择是否接受调剂", "err");
+
+      var no = "LH" + new Date().getFullYear() + String(Date.now()).slice(-6);
+      var all = [];
+      try { all = JSON.parse(localStorage.getItem("siteB_applications") || "[]"); } catch (e) { all = []; }
+      all.push({ no: no, email: current.email, name: val("name"), job: val("job"), createdAt: Date.now() });
+      localStorage.setItem("siteB_applications", JSON.stringify(all));
+      setMsg("网申提交成功，您的申请编号为 " + no, "ok");
+    });
+  })();
+  </script>
+</body>
+</html>

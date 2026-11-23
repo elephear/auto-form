@@ -1,0 +1,9 @@
+自动表单填写助手（Auto Form Filler）
+Copyright 2025-2026 向雄 (Xiong Xiang) — 公众号：思之益
+
+This product is licensed under the Apache License, Version 2.0.
+See the LICENSE file for the full license text.
+
+本项目为原创实现：Word(.docx) / PDF / TXT 解析、表单扫描与填写逻辑
+均由作者手写完成，未引入任何第三方运行时依赖。
+调用第三方大模型 API（默认 DeepSeek）时，其服务条款由相应服务商提供。

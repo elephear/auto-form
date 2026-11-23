@@ -1,0 +1,138 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Microsoft YaHei", Arial, sans-serif;
+  background: #eef3fb;
+  color: #243044;
+  line-height: 1.6;
+}
+.hero {
+  background: linear-gradient(135deg, #2b5cff, #1a3fb8);
+  color: #fff;
+  padding: 24px 32px 20px;
+}
+.hero h1 { margin: 0 0 6px; font-size: 22px; }
+.hero p { margin: 0; opacity: .88; font-size: 13px; }
+.nav { margin-top: 14px; }
+.nav a {
+  display: inline-block;
+  color: #fff;
+  background: rgba(255,255,255,.18);
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 13px;
+  margin: 0 8px 6px 0;
+}
+.nav a:hover { background: rgba(255,255,255,.32); }
+.wrap { max-width: 880px; margin: 22px auto 40px; padding: 0 16px; }
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 24px rgba(20,40,90,.08);
+  padding: 22px 26px;
+  margin-bottom: 18px;
+}
+.card h2 {
+  font-size: 16px;
+  margin: 0 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eef1f6;
+}
+.hint-box {
+  background: #f6f9ff;
+  border: 1px dashed #bcd0ff;
+  color: #3a5a9a;
+  font-size: 12.5px;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  line-height: 1.8;
+}
+.layui-form-item { display: flex; margin-bottom: 16px; }
+.layui-form-label {
+  width: 110px;
+  flex: 0 0 110px;
+  text-align: right;
+  padding: 8px 12px 0 0;
+  color: #5a6478;
+  font-size: 13.5px;
+}
+.layui-input-block { flex: 1; min-width: 0; }
+input[type=text], input[type=email], input[type=tel], input[type=password],
+input[type=date], input[type=number], input[type=url], textarea, select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d6dce8;
+  border-radius: 6px;
+  font-size: 13.5px;
+  background: #fbfcfe;
+  color: #243044;
+  font-family: inherit;
+}
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #2b5cff;
+  box-shadow: 0 0 0 3px rgba(43,92,255,.14);
+  background: #fff;
+}
+textarea { min-height: 96px; resize: vertical; }
+.d-rightTips { color: #98a1b3; font-size: 12px; margin: 4px 0 0; }
+.layui-form-select { position: relative; }
+.layui-form-select .layui-select-title input { cursor: pointer; background: #fbfcfe; }
+.layui-form-select dl {
+  display: none;
+  position: absolute;
+  left: 0; right: 0; top: 38px;
+  z-index: 20;
+  background: #fff;
+  border: 1px solid #d6dce8;
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(20,40,90,.12);
+  max-height: 190px;
+  overflow: auto;
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+}
+.layui-form-select:hover dl { display: block; }
+.layui-form-select dl dd { padding: 7px 12px; font-size: 13px; cursor: pointer; }
+.layui-form-select dl dd:hover { background: #f0f5ff; color: #2b5cff; }
+.layui-form-radio, .layui-form-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  margin: 0 10px 6px 0;
+  border: 1px solid #d6dce8;
+  border-radius: 16px;
+  font-size: 13px;
+  cursor: pointer;
+  background: #fbfcfe;
+  user-select: none;
+}
+.layui-form-radio.layui-form-radioed,
+.layui-form-checkbox.layui-form-checked {
+  border-color: #2b5cff;
+  color: #2b5cff;
+  background: #eef3ff;
+}
+.btn {
+  border: none;
+  border-radius: 6px;
+  padding: 9px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #2b5cff;
+  color: #fff;
+}
+.btn:hover { background: #1a3fb8; }
+.btn.ghost { background: #fff; color: #2b5cff; border: 1px solid #c9d6ff; }
+.actions { display: flex; gap: 10px; align-items: center; }
+.msg { margin-top: 12px; font-size: 13px; min-height: 18px; }
+.msg.ok { color: #0f9d58; }
+.msg.err { color: #d93025; }
+.tag { display: inline-block; font-size: 12px; color: #5a6478; background: #f0f3f9; border-radius: 10px; padding: 2px 10px; margin-left: 8px; }
+.steps { font-size: 13px; color: #55607a; }
+.steps li { margin: 6px 0; }

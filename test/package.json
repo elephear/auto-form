@@ -1,0 +1,13 @@
+{
+  "name": "auto-form-e2e-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "自动表单填写助手：两个网申站点 + 真实 DeepSeek API 端到端测试",
+  "scripts": {
+    "test": "node run-tests.js",
+    "test:key": "node run-tests.js"
+  },
+  "devDependencies": {
+    "jsdom": "^31.0.1"
+  }
+}

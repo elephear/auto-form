@@ -1,0 +1,22 @@
+# 依赖与临时产物
+node_modules/
+package-lock.json
+test/package-lock.json
+
+# 本地 API Key 配置（请勿提交）
+test/api-config.json
+test/key.txt
+
+# 文档与文章（不纳入版本库）
+article/
+使用说明.docx
+
+# 含个人隐私信息的文件
+向卓凡的简历.pdf
+
+# 系统 / 编辑器杂项
+Thumbs.db
+.DS_Store
+.vscode/
+*.tmp
+~$*

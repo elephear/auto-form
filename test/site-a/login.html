@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>星辰招聘 · 登录</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hero">
+    <h1>星辰招聘 · 登录</h1>
+    <p>第三步：登录验证（站点 A 会与本地注册记录比对）</p>
+    <div class="nav">
+      <a href="index.html">首页</a>
+      <a href="register.html">注册</a>
+      <a href="apply.html">网申</a>
+      <a href="login.html">登录</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="card">
+      <h2>账号登录</h2>
+      <div class="hint-box">按 <b>Ctrl + /</b>：面板会列出本网站已保存的登录信息，点「填入」或选择「登录」模式后点「开始智能填写」即可自动填入。</div>
+
+      <form id="loginForm" class="layui-form" autocomplete="off">
+        <div class="layui-form-item">
+          <label class="layui-form-label">用户名</label>
+          <div class="layui-input-block"><input type="text" name="username" required /></div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">密码</label>
+          <div class="layui-input-block"><input type="password" name="password" required /></div>
+        </div>
+        <div class="layui-form-item">
+          <div class="layui-input-block actions">
+            <button type="button" class="btn" id="btnLogin">登录</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="msg" id="msg"></div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var form = document.getElementById("loginForm");
+    var msg = document.getElementById("msg");
+    function val(name) {
+      var el = form.querySelector('[name="' + name + '"]');
+      return el ? (el.value || "").trim() : "";
+    }
+    function setMsg(text, kind) {
+      msg.textContent = text;
+      msg.className = "msg " + (kind || "");
+    }
+
+    document.getElementById("btnLogin").addEventListener("click", function () {
+      var u = val("username");
+      var p = form.querySelector('[name="password"]').value || "";
+      var users = [];
+      try { users = JSON.parse(localStorage.getItem("siteA_users") || "[]"); } catch (e) { users = []; }
+      var hit = users.find(function (x) { return x.username === u && x.password === p; });
+      if (!hit) return setMsg("用户名或密码不正确", "err");
+      localStorage.setItem("siteA_current", JSON.stringify({ username: hit.username, email: hit.email }));
+      setMsg("登录成功，欢迎 " + hit.username + "！", "ok");
+    });
+  })();
+  </script>
+</body>
+</html>

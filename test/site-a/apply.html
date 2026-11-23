@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>星辰招聘 · 网申信息</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hero">
+    <h1>星辰招聘 · 填写网申信息</h1>
+    <p>第二步：完善网申资料（站点 A 使用 layui 风格隐藏下拉与皮肤单选/复选）</p>
+    <div class="nav">
+      <a href="index.html">首页</a>
+      <a href="register.html">注册</a>
+      <a href="apply.html">网申</a>
+      <a href="login.html">登录</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="card">
+      <h2>网申信息 <span class="tag" id="currentUser">未登录</span></h2>
+      <div class="hint-box">按 <b>Ctrl + /</b> 导入 <b>resume.docx / resume.txt</b>，点击「开始智能填写」即可自动补齐下列字段。</div>
+
+      <form id="applyForm" class="layui-form" autocomplete="off">
+        <div class="layui-form-item">
+          <label class="layui-form-label">姓名</label>
+          <div class="layui-input-block"><input type="text" name="name" placeholder="请输入真实姓名" required /></div>
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">性别</label>
+          <div class="layui-input-block" id="sexGroup">
+            <input type="radio" name="sex" value="男" title="男" style="display:none" />
+            <div class="layui-form-radio"><span>男</span></div>
+            <input type="radio" name="sex" value="女" title="女" style="display:none" />
+            <div class="layui-form-radio"><span>女</span></div>
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">出生日期</label>
+          <div class="layui-input-block"><input type="date" name="birth" /></div>
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">手机号</label>
+          <div class="layui-input-block"><input type="tel" name="phone" placeholder="11 位手机号" required /></div>
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">邮箱</label>
+          <div class="layui-input-block"><input type="email" name="email" required /></div>
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">最高学历</label>
+          <div class="layui-input-block">
+            <select name="degree" style="display:none">
+              <option value="">请选择</option>
+              <option value="大专">大专</option>
+              <option value="本科">本科</option>
+              <option value="硕士">硕士</option>
+              <option value="博士">博士</option>
+            </select>
+            <div class="layui-form-select">
+              <div class="layui-select-title"><input type="text" readonly placeholder="请选择最高学历" /></div>
+              <dl>
+                <dd lay-value="">请选择</dd>
+                <dd lay-value="大专">大专</dd>
+                <dd lay-value="本科">本科</dd>
+                <dd lay-value="硕士">硕士</dd>
+                <dd lay-value="博士">博士</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">毕业院校</label>
+          <div class="layui-input-block"><input type="text" name="school" required /></div>
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">专业</label>
+          <div class="layui-input-block"><input type="text" name="major" required /></div>
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">求职意向</label>
+          <div class="layui-input-block">
+            <select name="job" style="display:none">
+              <option value="">请选择</option>
+              <option value="前端开发工程师">前端开发工程师</option>
+              <option value="后端开发工程师">后端开发工程师</option>
+              <option value="算法工程师">算法工程师</option>
+              <option value="产品经理">产品经理</option>
+              <option value="测试工程师">测试工程师</option>
+            </select>
+            <div class="layui-form-select">
+              <div class="layui-select-title"><input type="text" readonly placeholder="请选择求职意向" /></div>
+              <dl>
+                <dd lay-value="">请选择</dd>
+                <dd lay-value="前端开发工程师">前端开发工程师</dd>
+                <dd lay-value="后端开发工程师">后端开发工程师</dd>
+                <dd lay-value="算法工程师">算法工程师</dd>
+                <dd lay-value="产品经理">产品经理</dd>
+                <dd lay-value="测试工程师">测试工程师</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">期望城市</label>
+          <div class="layui-input-block"><input type="text" name="city" required /></div>
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">技能标签</label>
+          <div class="layui-input-block" id="skillsGroup">
+            <input type="checkbox" name="skills" value="HTML/CSS" title="HTML/CSS" style="display:none" />
+            <div class="layui-form-checkbox"><span>HTML/CSS</span></div>
+            <input type="checkbox" name="skills" value="JavaScript" title="JavaScript" style="display:none" />
+            <div class="layui-form-checkbox"><span>JavaScript</span></div>
+            <input type="checkbox" name="skills" value="Vue" title="Vue" style="display:none" />
+            <div class="layui-form-checkbox"><span>Vue</span></div>
+            <input type="checkbox" name="skills" value="React" title="React" style="display:none" />
+            <div class="layui-form-checkbox"><span>React</span></div>
+            <input type="checkbox" name="skills" value="Node.js" title="Node.js" style="display:none" />
+            <div class="layui-form-checkbox"><span>Node.js</span></div>
+            <input type="checkbox" name="skills" value="Python" title="Python" style="display:none" />
+            <div class="layui-form-checkbox"><span>Python</span></div>
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">个人简介</label>
+          <div class="layui-input-block">
+            <textarea name="summary" maxlength="300" required></textarea>
+            <p class="d-rightTips">字数范围：100-300 字</p>
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <div class="layui-input-block actions">
+            <button type="button" class="btn" id="btnSubmit">提交网申</button>
+            <button type="button" class="btn ghost" id="btnReset">重置</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="msg" id="msg"></div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var form = document.getElementById("applyForm");
+    var msg = document.getElementById("msg");
+    var currentEl = document.getElementById("currentUser");
+    var current = null;
+    try { current = JSON.parse(localStorage.getItem("siteA_current") || "null"); } catch (e) { current = null; }
+    if (current && current.username) currentEl.textContent = "账号：" + current.username;
+
+    function setMsg(text, kind) {
+      msg.textContent = text;
+      msg.className = "msg " + (kind || "");
+    }
+    function val(name) {
+      var el = form.querySelector('[name="' + name + '"]');
+      return el ? (el.value || "").trim() : "";
+    }
+    function radioVal(name) {
+      var el = form.querySelector('[name="' + name + '"]:checked');
+      return el ? el.value : "";
+    }
+    function checkedCount(name) {
+      return form.querySelectorAll('[name="' + name + '"]:checked').length;
+    }
+
+    // 皮肤单选：点击皮肤 -> 同步隐藏的 input
+    document.querySelectorAll(".layui-form-radio").forEach(function (skin) {
+      skin.addEventListener("click", function () {
+        var input = skin.previousElementSibling;
+        if (!input || input.type !== "radio") return;
+        document.querySelectorAll('input[type=radio][name="' + input.name + '"]').forEach(function (i) {
+          i.checked = i === input;
+          var s = i.nextElementSibling;
+          if (s && s.classList.contains("layui-form-radio")) {
+            s.classList.toggle("layui-form-radioed", i.checked);
+          }
+        });
+        input.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+    });
+
+    // 皮肤复选：点击皮肤 -> 切换隐藏的 input
+    document.querySelectorAll(".layui-form-checkbox").forEach(function (skin) {
+      skin.addEventListener("click", function () {
+        var input = skin.previousElementSibling;
+        if (!input || input.type !== "checkbox") return;
+        input.checked = !input.checked;
+        skin.classList.toggle("layui-form-checked", input.checked);
+        input.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+    });
+
+    // 自定义下拉：点击 dd -> 同步隐藏的 select
+    document.querySelectorAll(".layui-form-select").forEach(function (box) {
+      var select = box.parentElement.querySelector("select");
+      var titleInput = box.querySelector(".layui-select-title input");
+      box.querySelectorAll("dd").forEach(function (dd) {
+        dd.addEventListener("click", function () {
+          if (!select) return;
+          select.value = dd.getAttribute("lay-value") || "";
+          if (titleInput) titleInput.value = (dd.textContent || "").trim();
+          select.dispatchEvent(new Event("change", { bubbles: true }));
+        });
+      });
+    });
+
+    document.getElementById("btnReset").addEventListener("click", function () {
+      form.reset();
+      document.querySelectorAll(".layui-form-radioed, .layui-form-checked").forEach(function (el) {
+        el.classList.remove("layui-form-radioed", "layui-form-checked");
+      });
+      document.querySelectorAll(".layui-select-title input").forEach(function (i) { i.value = ""; });
+      setMsg("");
+    });
+
+    document.getElementById("btnSubmit").addEventListener("click", function () {
+      if (!current || !current.username) return setMsg("请先在注册页创建账号", "err");
+      if (!/^[\u4e00-\u9fa5]{2,10}$/.test(val("name"))) return setMsg("请填写 2-10 位中文姓名", "err");
+      if (!radioVal("sex")) return setMsg("请选择性别", "err");
+      if (!/^1\d{10}$/.test(val("phone"))) return setMsg("手机号格式不正确", "err");
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val("email"))) return setMsg("邮箱格式不正确", "err");
+      if (!val("degree")) return setMsg("请选择最高学历", "err");
+      if (!val("school")) return setMsg("请填写毕业院校", "err");
+      if (!val("major")) return setMsg("请填写专业", "err");
+      if (!val("job")) return setMsg("请选择求职意向", "err");
+      if (!val("city")) return setMsg("请填写期望城市", "err");
+      if (checkedCount("skills") < 1) return setMsg("请至少选择 1 个技能标签", "err");
+      if (val("summary").length < 100) return setMsg("个人简介至少 100 字", "err");
+
+      var no = "XC" + new Date().getFullYear() + String(Date.now()).slice(-6);
+      var all = [];
+      try { all = JSON.parse(localStorage.getItem("siteA_applications") || "[]"); } catch (e) { all = []; }
+      all.push({ no: no, username: current.username, name: val("name"), job: val("job"), createdAt: Date.now() });
+      localStorage.setItem("siteA_applications", JSON.stringify(all));
+      setMsg("网申信息提交成功，您的申请编号为 " + no, "ok");
+    });
+  })();
+  </script>
+</body>
+</html>

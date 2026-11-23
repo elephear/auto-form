@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "自动表单填写助手",
+  "short_name": "自动填表",
+  "version": "4.2.3",
+  "description": "按 Ctrl + / 唤出填写面板，在扩展配置中导入 Word/PDF/TXT 简历，由大模型分析页面表单结构后自动填写表单控件",
+  "author": "向雄（公众号：思之益）",
+  "homepage_url": "https://github.com/elephear/graduation-review-helper",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "scripting",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "https://api.deepseek.com/*",
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true,
+      "match_about_blank": true
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "自动表单填写助手（Ctrl + /）",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  }
+}
